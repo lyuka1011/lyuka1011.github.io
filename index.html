@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#140f1b">
+<meta name="theme-color" content="#100b16">
 <meta name="description" content="潚 Siao｜身心靈跨領域整合・內在體驗設計者。探索催眠、天語與音療，了解個人體驗、課程合作及五行聲音試聽。">
-<title>潚 Siao｜催眠・天語・聲音體驗</title>
+<title>潚 Siao｜內在體驗設計者・潚然塵外</title>
 <style>
 :root{color-scheme:dark;--bg:#140f1b;--surface:#211a2a;--text:#f7f0f5;--muted:#cbbfce;--gold:#ebc995;--line:#55415b;--focus:#ffe2ac}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -64,25 +64,79 @@ html{scroll-padding-top:16px}header{position:static}#collaboration{scroll-margin
 .offer>summary,.offer-link{gap:12px}.offer-title{font-size:1.08rem}.offer-meta{font-size:.85rem}.offer-body{padding-inline:24px 4px}.offer-control{padding-left:0}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Approved original visual: layered violet, illustrated background, serif headings and warm gold. */
+:root{--bg:#0d0a12;--surface:#1b1521;--gold:#e7c792;--muted:#c6b8c6;--line:rgba(235,198,153,.27)}
+body{background:radial-gradient(ellipse at 48% 0,#39253c 0,#17101c 20%,#0e0a13 60%,#0b0910 100%);font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Noto Sans TC","Microsoft JhengHei",sans-serif;line-height:1.85}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.30;background-image:radial-gradient(1px 1px at 13% 18%,#efdfb9 95%,transparent),radial-gradient(1px 1px at 54% 42%,#c6b4e9 95%,transparent),radial-gradient(2px 2px at 83% 68%,#f4e4c9 95%,transparent);background-size:280px 380px,390px 450px,610px 500px;z-index:0}
+body>*{position:relative;z-index:1}
+h1,h2,h3{font-family:"Noto Serif TC","Songti TC","STSong",serif;font-weight:500;line-height:1.37}
+.wrap{width:min(720px,calc(100% - 36px))}
+.gold{background:linear-gradient(120deg,#fff5db 0%,#d3a971 42%,#fff1d5 88%);color:transparent;background-clip:text;-webkit-background-clip:text}
+header{position:sticky;top:0;z-index:20;border-bottom:1px solid rgba(244,206,162,.15);background:#0d0a12ee}
+.nav{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:62px}
+.nav-brand{display:flex;gap:10px;align-items:center;min-height:44px;font-size:.77rem;letter-spacing:.11em;text-decoration:none}
+.mark{font-family:"Noto Serif TC","Songti TC",serif;font-size:1.65rem;color:#f7e3be}
+.nav-brand small{display:block;font-size:.56rem;letter-spacing:.24em;color:#cfb390}
+.nav-links{display:flex;gap:14px;font-size:.76rem;color:#ddd1d8}
+.nav-links a{padding:8px 0;min-height:44px;color:inherit;font-size:inherit}
+.nav-links a:hover{color:var(--gold);background:transparent}
+.hero{text-align:left;padding:65px 0 0;position:relative}
+.hero:before{content:"";position:absolute;inset:0 0 auto;height:390px;background:linear-gradient(180deg,#0b0812a8 15%,#130d1ac9 70%,#150f1b 100%),url("assets/siao-cosmic-banner.png") center / cover;opacity:.50;z-index:-1}
+.kicker{font-size:.83rem;color:var(--gold);letter-spacing:.17em}
+.hero h1{font-size:clamp(2.4rem,7vw,4.05rem);letter-spacing:.10em;margin:.4em 0 .35em;text-wrap:initial}
+.hero h1 span.gold{color:transparent}
+.hero .one-liner{font-size:1rem;color:#ead3ac;letter-spacing:.06em}
+.actions{display:flex;justify-content:flex-start;gap:12px;flex-wrap:wrap;margin:30px 0}
+.button{border:1px solid #d8b6817c;min-height:48px;padding:12px 20px;border-radius:9px;font-size:.92rem;font-weight:650;background:linear-gradient(135deg,#f5dfb8,#d6ae7b 60%,#f6e4c1);color:#211420}
+.button:hover{background:linear-gradient(135deg,#fff0d5,#e2bd8e 60%,#fff0d5)}
+.button.ghost{background:#201628bf;color:#f2ddbd}
+.button.ghost:hover{background:#39253c}
+.tagline{display:flex;gap:12px;flex-wrap:wrap;color:#c9bdc9;font-size:.83rem;margin:10px 0 22px}
+.tagline span+span:before{content:"✦";margin-right:11px;color:var(--gold)}
+.photo-frame{width:min(100%,570px);margin:36px auto 0;padding:10px;background:linear-gradient(160deg,#3c2939,#15101a);border:1px solid var(--line);border-radius:24px 24px 5px 5px;box-shadow:0 25px 70px #0007;position:relative}
+.photo-frame:before{content:"";position:absolute;inset:-10px 16px auto;height:1px;background:linear-gradient(90deg,transparent,#efcb95,transparent)}
+.portrait{display:block;width:100%;height:auto;aspect-ratio:788/1300;object-fit:contain;border:0;border-radius:16px 16px 2px 2px;background:#2a1c28}
+.portrait-crop{aspect-ratio:788/1230;overflow:hidden;border-radius:16px 16px 2px 2px}
+.portrait-crop .portrait{border-radius:0}
+.photo-caption{color:#d6bfaa;font-size:.75rem;text-align:center;letter-spacing:.15em;margin:14px 4px 5px}
+.section{padding:65px 0 0}
+.section-heading{text-align:center}
+.section h2{font-size:clamp(1.95rem,5vw,2.7rem);letter-spacing:.10em;margin:5px 0 16px}
+.offers{border-top:0}
+.offer,.offer-link,.about,.inquiry{background:linear-gradient(145deg,#34243c85,#17111d 78%);border:1px solid var(--line);border-radius:20px;box-shadow:0 20px 75px #0003;margin:17px 0}
+.offer>summary,.offer-link{padding:24px;min-height:112px}
+.offer-number{font-family:"Songti TC",serif;font-size:1.3rem;line-height:1.5}
+.offer-title{font-family:"Songti TC",serif;font-size:1.35rem;font-weight:500;letter-spacing:.04em;color:#f5debb}
+.offer-body{padding:0 26px 26px}
+.about{padding:28px}
+.background-details{border-color:var(--line);background:#0d0a1240}
+.inquiry{margin-top:24px;padding:clamp(18px,4vw,28px)}
+footer{padding-top:65px}
+@media(max-width:560px){
+  html{scroll-padding-top:16px}header{position:static}
+  .wrap{width:calc(100% - 30px)}
+  .nav{flex-direction:column;align-items:stretch;gap:0;padding-top:6px}
+  .nav-links{justify-content:space-between;gap:8px}
+  .hero{padding-top:46px}
+  .hero h1{font-size:clamp(1.65rem,7.4vw,2.45rem)}
+  .kicker{font-size:.72rem;letter-spacing:.12em}
+  .actions{display:grid;grid-template-columns:1fr;gap:12px}
+  .actions .button{width:100%;max-width:none}
+  .offer>summary,.offer-link{padding:20px 16px;gap:12px}
+  .offer-title{font-size:1.12rem}
+  .offer-body{padding:0 18px 22px}
+  .about{padding:24px 18px}
+  .section{padding-top:54px}
+}
+
 </style>
 </head>
 <body>
 <a class="skip-link" href="#main">跳到主要內容</a>
-<header>
-  <div class="header-inner">
-    <a class="brand" href="#top" aria-label="潚然塵外，回到首頁"><span class="brand-mark" aria-hidden="true">潚</span><span class="brand-name">潚然塵外<small>Siao</small></span></a>
-    <nav aria-label="主要導覽"><a href="#services">體驗與課程</a><a href="#about">關於潚</a><a href="#contact">合作洽詢</a></nav>
-  </div>
-</header>
+<header><div class="wrap nav"><a class="nav-brand" href="#top" aria-label="潚 Siao 品牌首頁"><span class="mark">潚</span><span>潚然塵外<small>SIAO · INNER EXPERIENCE</small></span></a><nav class="nav-links" aria-label="主要導覽"><a href="#about">關於</a><a href="#experience">個人體驗</a><a href="#teaching">課程</a><a href="five-elements/">五行聲音 ↗</a></nav></div></header>
 <main id="main">
-  <section class="hero wrap" id="top" aria-labelledby="hero-title">
-    <p class="eyebrow">潚 Siao</p>
-    <h1 id="hero-title">催眠・天語<br><span>聲音體驗</span></h1>
-    <p class="role">身心靈跨領域整合・內在體驗設計者</p>
-    <p class="lead">從聲音開始，留一段時間給自己。</p>
-    <div class="actions"><a class="button" href="#services">找到適合的體驗 <span aria-hidden="true">↓</span></a><a class="secondary" href="#teaching">課程與合作 <span aria-hidden="true">↗</span></a></div>
-    <figure class="portrait-frame"><img class="portrait" src="assets/siao-harp-portrait.jpg" width="788" height="1300" alt="潚在琴床旁的工作紀錄" fetchpriority="high" decoding="async"><figcaption>琴床聲音體驗・現場紀錄</figcaption></figure>
-  </section>
+  <section class="hero" id="top" aria-labelledby="hero-title"><div class="wrap"><div class="kicker">潚 Siao · INNER EXPERIENCE DESIGNER</div><h1 id="hero-title">身心靈跨領域整合<br><span class="gold">內在體驗設計者</span></h1><p class="one-liner">每一次探索，都開始於好奇；每一次整合，都體現於生活。</p><div class="actions"><a class="button primary" href="#experience">探索個人體驗 ↘</a><a class="button ghost" href="#collaboration">課程與合作邀約 ↘</a></div><div class="tagline"><span>聲音創作</span><span>催眠引導</span><span>沉浸式體驗</span></div><figure class="photo-frame"><div class="portrait-crop"><img class="portrait" src="assets/siao-harp-portrait.jpg" width="788" height="1300" alt="潚在瑞士琴床旁進行共振體驗的現場紀錄" fetchpriority="high" decoding="async"></div><figcaption class="photo-caption">瑞士琴床共振體驗現場</figcaption></figure></div></section>
 
   <section class="section wrap" id="services" aria-labelledby="services-title">
     <div class="section-heading"><p class="eyebrow">體驗與課程</p><h2 id="services-title">你想從哪裡開始？</h2></div>
@@ -101,8 +155,7 @@ html{scroll-padding-top:16px}header{position:static}#collaboration{scroll-margin
 
   <section class="section wrap" id="about" aria-labelledby="about-title">
     <div class="about">
-      <p class="eyebrow">關於潚</p><h2 id="about-title">把不同領域，連成一次體驗。</h2>
-      <p>我是潚。我把表演、催眠與聲音連起來，<br>陪你走一段屬於自己的內在探索。</p>
+      <p class="eyebrow">ABOUT SIAO</p><h2 id="about-title">學經歷與專業</h2>
       <div class="method" aria-label="我的方法：觀察、驗證、校準"><span>觀察</span><span>驗證</span><span>校準</span></div>
       <p class="credential">NGH 催眠師認證<br>元新生醫特約催眠師／音療師</p>
       <details class="background-details"><summary>學經歷與合作經驗 <span aria-hidden="true"><span class="when-closed">＋</span><span class="when-open">−</span></span></summary><ul><li>中國戲劇學系藝術學士</li><li>樹德科技大學人類性學研究所碩士班甄試中</li><li>天語、人聲、琴床、頌缽與銅鑼的聲音實務</li><li>公益占卜與社區合作經驗</li></ul></details>
