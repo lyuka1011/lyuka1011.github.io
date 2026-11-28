@@ -3,7 +3,7 @@
   const button = $('signup');
   let content = null;
   let selectedId = '';
-  const validUrl = (value) => { if (!value || typeof value !== 'string' || !value.trim()) return ''; try { const u = new URL(value, location.origin); return ['http:', 'https:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
+  const validUrl = (value) => { if (!value || typeof value !== 'string' || !value.trim()) return ''; try { const u = new URL(value, document.baseURI); return ['http:', 'https:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
 
   if ('IntersectionObserver' in window && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.documentElement.classList.add('motion-ready');
