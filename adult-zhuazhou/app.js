@@ -139,7 +139,7 @@
   let previousVideo = '';
   function renderVideo() {
     const url = validUrl(content.videoUrl);
-    if (!url && previousVideo) { $('film-container').innerHTML = '<div class="film-placeholder"><svg class="film-star"><use href="#star"/></svg><p>一段記憶，即將展開</p><span>影片製作中，稍後與你相遇</span></div>'; previousVideo = ''; return; }
+    if (!url && previousVideo) { $('film-container').classList.remove('portrait-video'); $('film-container').innerHTML = '<div class="film-placeholder"><svg class="film-star"><use href="#star"/></svg><p>一段記憶，即將展開</p><span>影片製作中，稍後與你相遇</span></div>'; previousVideo = ''; return; }
     if (!url || url === previousVideo) return;
     const u = new URL(url);
     let embed = '';
@@ -151,8 +151,15 @@
       if (/^\d+$/.test(id || '')) embed = `https://player.vimeo.com/video/${id}`;
     }
     const player = document.createElement(embed ? 'iframe' : 'video');
+    $('film-container').classList.remove('portrait-video');
     if (embed) { player.src = embed; player.title = '成年人的抓周活動影片'; player.allow = 'fullscreen; picture-in-picture'; player.allowFullscreen = true; player.loading = 'lazy'; }
-    else { player.src = url; player.controls = true; player.playsInline = true; player.preload = 'metadata'; }
+    else {
+      player.src = url; player.controls = true; player.playsInline = true; player.preload = 'metadata';
+      player.setAttribute('aria-label', '成年人的抓周活動概念影片');
+      player.addEventListener('loadedmetadata', () => {
+        if (player.isConnected) $('film-container').classList.toggle('portrait-video', player.videoHeight > player.videoWidth);
+      });
+    }
     $('film-container').replaceChildren(player); previousVideo = url;
   }
 

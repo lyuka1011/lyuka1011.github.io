@@ -153,3 +153,7 @@ html { scroll-padding-top: 12px; }
   .banner-trim { gap: 8px; }
 }
 
+
+/* Keep the supplied portrait film at its original 9:16 ratio. */
+.film-frame.portrait-video { aspect-ratio: 9 / 16; max-width: 420px; }
+.film-frame.portrait-video video { aspect-ratio: 9 / 16; object-fit: contain; }
