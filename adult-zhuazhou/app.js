@@ -1,6 +1,7 @@
 (() => {
   const $ = (id) => document.getElementById(id);
   const button = $('signup');
+  const contentApi = document.querySelector('meta[name="event-content-api"]')?.content || '/api/content';
   let content = null;
   let selectedId = '';
   const validUrl = (value) => { if (!value || typeof value !== 'string' || !value.trim()) return ''; try { const u = new URL(value, document.baseURI); return ['http:', 'https:'].includes(u.protocol) ? u.href : ''; } catch { return ''; } };
@@ -112,8 +113,8 @@
       const status = document.createElement('span'); status.className = 'session-status'; status.textContent = sessionStatus(s);
       details.append(title, time); label.append(input, details, status); options.append(label);
     });
-    $('data-note').hidden = false;
-    $('data-note').textContent = '進度預覽｜場次為發布時的資料；後台修改後需重新發布。';
+    $('data-note').hidden = !content?.sessions.length;
+    $('data-note').textContent = content?.sessions.length ? '名額依付款確認與主辦單位更新，以完成報名確認為準。' : '';
   }
 
   function initializeCalendar() {
@@ -242,7 +243,7 @@
 
   async function refresh() {
     try {
-      const response = await fetch('./content.json', { cache: 'no-store' });
+      const response = await fetch(contentApi, { cache: 'no-store' });
       if (!response.ok) throw new Error('讀取失敗');
       const previouslyHadSessions = !!content?.sessions.length;
       content = await response.json();
@@ -253,11 +254,15 @@
       if (selectedDate && !content.sessions.some(s => s.date === selectedDate)) selectedDate = '';
       const signature = JSON.stringify(content.sessions);
       if (signature !== sessionSignature) { renderCalendar(); renderDaySessions(); sessionSignature = signature; }
+      $('data-note').hidden = !content.sessions.length;
+      $('data-note').textContent = '名額依付款確認與主辦單位更新，以完成報名確認為準。';
       setButton(); renderVideo();
     } catch {
       fresh = false; loadFailed = true;
       $('calendar-empty').textContent = '場次資訊暫時無法載入，請稍後重新整理。';
       if (!content?.sessions.length) $('calendar-empty').hidden = false;
+      $('data-note').hidden = false;
+      $('data-note').textContent = '目前無法同步最新名額，畫面上的場次資訊可能已過時，請稍後重試。';
       setButton();
     }
   }
