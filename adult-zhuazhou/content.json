@@ -1,0 +1,55 @@
+{
+  "videoUrl": "",
+  "registrationUrl": "",
+  "updatedAt": "2026-11-28T09:35:29.571969+00:00",
+  "sessions": [
+    {
+      "id": "7d051b5c-fcd8-4f78-a42c-f2ce14ec1753",
+      "title": "週日下午場",
+      "date": "2026-12-06",
+      "time": "14:00-17:00",
+      "location": "高雄",
+      "registrationUrl": "",
+      "capacity": 10,
+      "closed": false,
+      "soldOut": false,
+      "remaining": 8
+    },
+    {
+      "id": "7112b81c-5ee7-4848-ae8c-f600f7636ff6",
+      "title": "週二下午場",
+      "date": "2026-12-08",
+      "time": "14:00-17:00",
+      "location": "高雄",
+      "registrationUrl": "",
+      "capacity": 10,
+      "closed": false,
+      "soldOut": false,
+      "remaining": 7
+    },
+    {
+      "id": "67390cf9-8dfa-4448-b737-1ca751df42fc",
+      "title": "週六下午場",
+      "date": "2026-12-11",
+      "time": "14:00-17:00",
+      "location": "高雄",
+      "registrationUrl": "",
+      "capacity": 10,
+      "closed": false,
+      "soldOut": true,
+      "remaining": 0
+    },
+    {
+      "id": "194018d3-2103-413c-8114-9811a2332b43",
+      "title": "週日下午場",
+      "date": "2026-12-20",
+      "time": "14:00-17:00",
+      "location": "高雄",
+      "registrationUrl": "",
+      "capacity": 10,
+      "closed": false,
+      "soldOut": true,
+      "remaining": 0
+    }
+  ]
+}
