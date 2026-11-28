@@ -136,11 +136,85 @@
   $('next-month').addEventListener('click', () => changeMonth(1));
   renderCalendar();
 
+  let releaseVideoBehavior = () => {};
+  function configureScrollVideo(player) {
+    const controls = $('film-sound-controls');
+    const soundButton = $('film-sound-toggle');
+    const note = $('film-playback-note');
+    const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let visible = false;
+    let userPaused = false;
+    let systemPause = false;
+    let observer = null;
+    controls.hidden = false;
+    note.hidden = true;
+    function showSoundState() {
+      const soundOn = !player.muted && player.volume > 0;
+      soundButton.textContent = soundOn ? '點擊關閉聲音' : '點擊開啟聲音';
+      soundButton.setAttribute('aria-pressed', String(soundOn));
+    }
+    function start(userAction = false) {
+      if (document.hidden || !visible || (!userAction && (userPaused || reduceMotion || player.ended))) return;
+      const request = player.play();
+      if (request?.catch) request.catch(() => {
+        if (player.isConnected && visible) { note.hidden = false; note.textContent = '點擊影片即可播放'; }
+      });
+    }
+    function stop() {
+      if (!player.paused) { systemPause = true; player.pause(); }
+      player.muted = true;
+      showSoundState();
+    }
+    const onPause = () => {
+      if (systemPause) { systemPause = false; return; }
+      if (visible && !document.hidden && !player.ended) userPaused = true;
+    };
+    const onPlay = () => { userPaused = false; note.hidden = true; };
+    const onVisibility = () => { if (document.hidden) stop(); else start(); };
+    const onSoundClick = () => {
+      const turnOn = player.muted || player.volume === 0;
+      if (turnOn && player.volume === 0) player.volume = 1;
+      player.muted = !turnOn;
+      showSoundState();
+      if (turnOn) { userPaused = false; start(true); }
+    };
+    player.addEventListener('volumechange', showSoundState);
+    player.addEventListener('pause', onPause);
+    player.addEventListener('play', onPlay);
+    document.addEventListener('visibilitychange', onVisibility);
+    soundButton.addEventListener('click', onSoundClick);
+    showSoundState();
+    if ('IntersectionObserver' in window) {
+      observer = new IntersectionObserver(entries => {
+        const entry = entries[0];
+        visible = entry.isIntersecting && entry.intersectionRatio > 0;
+        if (!visible) stop();
+        else if (entry.intersectionRatio >= 0.4) start();
+      }, { threshold: [0, 0.4] });
+      observer.observe(player);
+    } else {
+      visible = true;
+      note.hidden = false; note.textContent = '點擊影片即可播放';
+    }
+    if (reduceMotion) { note.hidden = false; note.textContent = '點擊影片即可播放'; }
+    return () => {
+      observer?.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+      soundButton.removeEventListener('click', onSoundClick);
+      player.removeEventListener('volumechange', showSoundState);
+      player.removeEventListener('pause', onPause);
+      player.removeEventListener('play', onPlay);
+      player.muted = true; player.pause();
+      controls.hidden = true;
+    };
+  }
+
   let previousVideo = '';
   function renderVideo() {
     const url = validUrl(content.videoUrl);
-    if (!url && previousVideo) { $('film-container').classList.remove('portrait-video'); $('film-container').innerHTML = '<div class="film-placeholder"><svg class="film-star"><use href="#star"/></svg><p>一段記憶，即將展開</p><span>影片製作中，稍後與你相遇</span></div>'; previousVideo = ''; return; }
+    if (!url && previousVideo) { releaseVideoBehavior(); $('film-container').classList.remove('portrait-video'); $('film-container').innerHTML = '<div class="film-placeholder"><svg class="film-star"><use href="#star"/></svg><p>一段記憶，即將展開</p><span>影片製作中，稍後與你相遇</span></div>'; previousVideo = ''; return; }
     if (!url || url === previousVideo) return;
+    releaseVideoBehavior();
     const u = new URL(url);
     let embed = '';
     if (['www.youtube.com', 'youtube.com', 'm.youtube.com', 'youtu.be'].includes(u.hostname)) {
@@ -154,13 +228,16 @@
     $('film-container').classList.remove('portrait-video');
     if (embed) { player.src = embed; player.title = '成年人的抓周活動影片'; player.allow = 'fullscreen; picture-in-picture'; player.allowFullscreen = true; player.loading = 'lazy'; }
     else {
+      player.defaultMuted = true; player.muted = true; player.setAttribute('muted', '');
       player.src = url; player.controls = true; player.playsInline = true; player.preload = 'metadata';
       player.setAttribute('aria-label', '成年人的抓周活動概念影片');
       player.addEventListener('loadedmetadata', () => {
         if (player.isConnected) $('film-container').classList.toggle('portrait-video', player.videoHeight > player.videoWidth);
       });
     }
-    $('film-container').replaceChildren(player); previousVideo = url;
+    $('film-container').replaceChildren(player);
+    if (!embed) releaseVideoBehavior = configureScrollVideo(player);
+    previousVideo = url;
   }
 
   async function refresh() {
